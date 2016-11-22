@@ -54,11 +54,12 @@
         -->
 
         <dependency>
-            <groupId>org.vito.probav</groupId>
-            <artifactId>probav-reader</artifactId>
+            <groupId>org.vito.probavbox</groupId>
+            <artifactId>probavbox-reader</artifactId>
             <version>${project.version}</version>
         </dependency>
 
+        <!-- Following dependencies are necessary for the About-Box -->
         <dependency>
             <groupId>org.esa.snap</groupId>
             <artifactId>snap-rcp</artifactId>
