@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+OpenIDE-Module-Display-Category: PROBA-V Toolbox
+OpenIDE-Module-Specification-Version: ${probavbox.nbmSpecVersion}
+AutoUpdate-Show-In-Client: true
+AutoUpdate-Essential-Module: false
