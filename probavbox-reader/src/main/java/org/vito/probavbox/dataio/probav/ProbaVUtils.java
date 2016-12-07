@@ -61,9 +61,17 @@ public class ProbaVUtils {
                 }
                 break;
             case Datatype.CLASS_FLOAT:
-                float[] fvals = (float[]) attribute.getValue();
-                for (float fval : fvals) {
-                    result = result.concat(Float.toString(fval) + " ");
+                if (attribute.getValue().getClass() == float[].class) {
+                    float[] fvals = (float[]) attribute.getValue();
+                    for (float fval : fvals) {
+                        result = result.concat(Float.toString(fval) + " ");
+                    }
+                }
+                if (attribute.getValue().getClass() == double[].class) {
+                    double[] dvals = (double[]) attribute.getValue();
+                    for (double dval : dvals) {
+                        result = result.concat(Double.toString(dval) + " ");
+                    }
                 }
                 break;
             case Datatype.CLASS_STRING:

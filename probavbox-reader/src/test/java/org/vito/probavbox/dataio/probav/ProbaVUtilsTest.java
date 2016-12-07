@@ -21,17 +21,31 @@ public class ProbaVUtilsTest {
         final String intAttrValue = ProbaVUtils.getAttributeValue(intAttr);
         assertEquals("2", intAttrValue);
 
+        // there might also be shorts or longs within an 'int' attribute:
+        intAttr.setValue(new short[]{3});
+        final String shortAttrValue = ProbaVUtils.getAttributeValue(intAttr);
+        assertEquals("3", shortAttrValue);
+        intAttr.setValue(new long[]{4L});
+        final String longAttrValue = ProbaVUtils.getAttributeValue(intAttr);
+        assertEquals("4", longAttrValue);
+
         final H5Datatype floatDatatype = new H5Datatype(H5Datatype.CLASS_FLOAT, H5Datatype.NATIVE, H5Datatype.NATIVE, -1);
         final Attribute floatAttr = new Attribute("floatAttr", floatDatatype, new long[]{1L});
         floatAttr.setValue(new float[]{4.5f, 2.3f});
         final String floatAttrValue = ProbaVUtils.getAttributeValue(floatAttr);
         assertEquals("4.5 2.3", floatAttrValue);
 
+        // there might also be doubles within a 'float' attribute:
+        floatAttr.setValue(new double[]{5.6, 7.8});
+        final String doubleAttrValue = ProbaVUtils.getAttributeValue(floatAttr);
+        assertEquals("5.6 7.8", doubleAttrValue);
+
         final H5Datatype stringDatatype = new H5Datatype(H5Datatype.CLASS_STRING, H5Datatype.NATIVE, H5Datatype.NATIVE, -1);
         final Attribute stringAttr = new Attribute("stringAttr", stringDatatype, new long[]{1L});
         stringAttr.setValue(new String[]{"bla", "blubb", "lalala"});
         final String stringAttrValue = ProbaVUtils.getAttributeValue(stringAttr);
         assertEquals("bla blubb lalala", stringAttrValue);
+
     }
 
     @Test
