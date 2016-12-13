@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.vito.probavbox</groupId>
         <artifactId>probavbox</artifactId>
-        <version>1.0.1-SNAPSHOT</version>
+        <version>1.0.1</version>
     </parent>
 
     <artifactId>probavbox-kit</artifactId>

@@ -21,7 +21,7 @@
 
     <groupId>org.vito.probavbox</groupId>
     <artifactId>probavbox</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
     <name>PROBA-V Toolbox</name>
     <description>Tools for the PROBA-V Satellite</description>
     <url>http://proba-v.vgt.vito.be/</url>
