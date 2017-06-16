@@ -34,7 +34,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <snap.version>5.0.7-SNAPSHOT</snap.version>
+        <snap.version>5.0.8-SNAPSHOT</snap.version>
         <netbeans.version>RELEASE82</netbeans.version>
         <javahelp.version>2.0.05</javahelp.version>
         <netcdf.version>4.3.22</netcdf.version>
