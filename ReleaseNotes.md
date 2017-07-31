@@ -1,6 +1,13 @@
 PROBA-V Toolbox Release Notes
 ================================
 
+Changes in PROBA-V Toolbox 2.0
+------------------------------
+
+No new features have been added to the PROBA-V Toolbox in version 2.0. It has been only 
+released for compatibility reasons with SNAP 6. 
+
+
 Changes in PROBA-V Toolbox 1.0
 ------------------------------
 
