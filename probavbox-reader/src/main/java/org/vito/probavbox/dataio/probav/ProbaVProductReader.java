@@ -46,7 +46,7 @@ public class ProbaVProductReader extends AbstractProductReader {
     /**
      * Constructs a new abstract product reader.
      *
-     * @param readerPlugIn the reader plug-in which created this reader, can be <code>null</code> for internal reader
+     * @param readerPlugIn the reader plug-in which created this reader, can be {@code null} for internal reader
      *                     implementations
      */
     protected ProbaVProductReader(ProductReaderPlugIn readerPlugIn) {
@@ -60,7 +60,7 @@ public class ProbaVProductReader extends AbstractProductReader {
 
         Product targetProduct = null;
 
-        if (probavFile != null && ProbaVProductReaderPlugIn.isHdf5LibAvailable()) {
+        if (ProbaVProductReaderPlugIn.isHdf5LibAvailable()) {
             FileFormat h5FileFormat = FileFormat.getFileFormat(FileFormat.FILE_TYPE_HDF5);
             FileFormat h5File = null;
             try {

@@ -8,6 +8,7 @@ import org.esa.snap.core.dataio.ProductReader;
 import org.esa.snap.core.dataio.ProductReaderPlugIn;
 import org.esa.snap.core.datamodel.RGBImageProfile;
 import org.esa.snap.core.datamodel.RGBImageProfileManager;
+import org.esa.snap.core.util.StringUtils;
 import org.esa.snap.core.util.SystemUtils;
 import org.esa.snap.core.util.io.SnapFileFilter;
 
@@ -29,7 +30,7 @@ public class ProbaVProductReaderPlugIn implements ProductReaderPlugIn {
 
     private static final Class[] SUPPORTED_INPUT_TYPES = new Class[]{String.class, File.class};
     private static final String DESCRIPTION = "PROBA-V Format";
-    private static final String FILE_EXTENSION = "";
+    private static final String FILE_EXTENSION = ".HDF5";
     private static final String[] DEFAULT_FILE_EXTENSIONS = new String[]{FILE_EXTENSION};
     private static final String[] FORMAT_NAMES = new String[]{FORMAT_NAME_PROBA_V};
 
@@ -37,9 +38,7 @@ public class ProbaVProductReaderPlugIn implements ProductReaderPlugIn {
 
     static {
         hdf5LibAvailable = loadHdf5Lib(ProbaVProductReaderPlugIn.class) != null;
-    }
 
-    public ProbaVProductReaderPlugIn() {
         RGBImageProfile toaProfile = new RGBImageProfile("PROBA-V TOA RGB",
                                                          new String[]{"TOA_REFL_NIR", "TOA_REFL_RED", "TOA_REFL_BLUE"});
 
@@ -63,7 +62,6 @@ public class ProbaVProductReaderPlugIn implements ProductReaderPlugIn {
 
     @Override
     public ProductReader createReaderInstance() {
-//        return new ProbaVL2AProductReader(this);
         return new ProbaVProductReader(this);   // test!
     }
 
@@ -99,7 +97,8 @@ public class ProbaVProductReaderPlugIn implements ProductReaderPlugIn {
         } else if (input instanceof File) {
             return (File) input;
         }
-        return null;
+        String typeArray = StringUtils.arrayToString(SUPPORTED_INPUT_TYPES, ",");
+        throw new IllegalStateException(String.format("Unsupported input data type should be one of [%s] but is %s", typeArray, input.getClass()));
     }
 
     static Class<?> loadHdf5Lib(Class<?> callerClass) {
@@ -114,7 +113,7 @@ public class ProbaVProductReaderPlugIn implements ProductReaderPlugIn {
     }
 
     private static boolean isInputValid(Object input) {
-        File inputFile = new File(input.toString());
+        File inputFile = getFileInput(input);
         final boolean fileNameValid = isInputProbaVFileNameValid(inputFile.getName());
         if (fileNameValid) {
             final TreeNode probavTypeNode = getProbavTypeNode(inputFile);
