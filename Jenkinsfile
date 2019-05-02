@@ -19,9 +19,9 @@ pipeline {
     environment {
         toolName = sh(returnStdout: true, script: "echo ${env.JOB_NAME} | cut -d '/' -f 1").trim()
         branchVersion = sh(returnStdout: true, script: "echo ${env.GIT_BRANCH} | cut -d '/' -f 2").trim()
-        toolVersion = ''
+        /*toolVersion = ''
         deployDirName = ''
-        snapMajorVersion = ''
+        snapMajorVersion = ''*/
     }
     agent { label 'snap-test' }
     stages {
@@ -34,14 +34,14 @@ pipeline {
                 }
             }
             steps {
-                script {
+                /*script {
                     // Get snap version from pom file
                     toolVersion = sh(returnStdout: true, script: "cat pom.xml | grep '<version>' | head -1 | cut -d '>' -f 2 | cut -d '-' -f 1").trim()
                     snapMajorVersion = sh(returnStdout: true, script: "echo ${toolVersion} | cut -d '.' -f 1").trim()
                     deployDirName = "${toolName}/${branchVersion}-${toolVersion}-${env.GIT_COMMIT}"
-                }
+                }*/
                 echo "Build Job ${env.JOB_NAME} from ${env.GIT_BRANCH} with commit ${env.GIT_COMMIT}"
-                sh "mvn -Dm2repo=/var/tmp/repository/ -Duser.home=/home/snap -Dsnap.userdir=/home/snap clean package install -U -DskipTests=false"
+                sh "mvn -Dm2repo=/var/tmp/repository/ -Duser.home=/home/snap -Dsnap.userdir=/home/snap clean package install -U -DskipTests=false -Dmaven.test.failure.ignore=true"
             }
         }
         stage('Save installer data') {
@@ -54,12 +54,30 @@ pipeline {
             }
             when {
                 expression {
-                    return "${env.GIT_BRANCH}" == 'master';
+                    return "${env.GIT_BRANCH}" == 'master' || "${env.GIT_BRANCH}" =~ /\d+\.\d+\.\d+(-rc\d+)?$/;
                 }
             }
             steps {
                 echo "Save data for SNAP Installer ${env.JOB_NAME} from ${env.GIT_BRANCH} with commit ${env.GIT_COMMIT}"
-                sh "/opt/scripts/saveInstallData.sh ${toolName}"
+                sh "/opt/scripts/saveInstallData.sh ${toolName} ${env.GIT_BRANCH}"
+            }
+        }
+        stage('Deploy') {
+            agent {
+                docker {
+                    label 'snap-test'
+                    image 'snap-build-server.tilaa.cloud/maven:3.6.0-jdk-8'
+                    args '-e MAVEN_CONFIG=/var/maven/.m2 -v /opt/maven/.m2/settings.xml:/var/maven/.m2/settings.xml -v docker_local-update-center:/local-update-center'
+                }
+            }
+            when {
+                expression {
+                    return "${env.GIT_BRANCH}" == 'master' || "${env.GIT_BRANCH}" =~ /\d+\.x/ || "${env.GIT_BRANCH}" =~ /\d+\.\d+\.\d+(-rc\d+)?$/;
+                }
+            }
+            steps {
+                echo "Deploy ${env.JOB_NAME} from ${env.GIT_BRANCH} with commit ${env.GIT_COMMIT}"
+                sh "mvn -Duser.home=/var/maven -Dsnap.userdir=/home/snap deploy -U -DskipTests=true"
             }
         }
     }
