@@ -23,7 +23,7 @@ pipeline {
     }
     agent { label 'snap-test' }
     stages {
-        stage('Package') {
+        stage('Package and deploy') {
             agent {
                 docker {
                     label 'snap-test'
