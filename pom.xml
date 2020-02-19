@@ -21,7 +21,7 @@
 
     <groupId>org.vito.probavbox</groupId>
     <artifactId>probavbox</artifactId>
-    <version>2.1.0.1-SNAPSHOT</version>
+    <version>2.1.0.1</version>
     <name>PROBA-V Toolbox</name>
     <description>Tools for the PROBA-V Satellite</description>
     <url>http://proba-v.vgt.vito.be/</url>
@@ -34,14 +34,14 @@
     <packaging>pom</packaging>
 
     <properties>
-        <snap.version>7.0.3.1-SNAPSHOT</snap.version>
+        <snap.version>7.0.3.1</snap.version>
         <!--
             snap.version is the Maven module version.
             snap.nbmSpecVersion is the NetBeans module specification version.
             It is used to filter manifest.mf and set the manifest's "OpenIDE-Module-Specification-Version" header.
             This is necessary to make NetBeans modules updatable and independent from the Maven version (= snap.version).
         -->
-        <probav.version>2.1.0.1-SNAPSHOT</probav.version>
+        <probav.version>2.1.0.1</probav.version>
         <netbeans.version>RELEASE82</netbeans.version>
         <javahelp.version>2.0.05</javahelp.version>
         <netcdf.version>4.3.22</netcdf.version>
@@ -409,7 +409,7 @@
                             <configuration>
                                 <name>probavbox.nbmSpecVersion</name>
                                 <value>${project.version}</value>
-                                <regex>-SNAPSHOT|(-rc[0-9]+)</regex>
+                                <regex>|(-rc[0-9]+)</regex>
                                 <replacement>.0</replacement>
                                 <failIfNoMatch>false</failIfNoMatch>
                             </configuration>
