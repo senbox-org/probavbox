@@ -44,7 +44,7 @@
         <probav.version>2.2.0</probav.version>
         <netbeans.version>RELEASE82</netbeans.version>
         <javahelp.version>2.0.05</javahelp.version>
-        <netcdf.version>4.3.22</netcdf.version>
+        <netcdf.version>5.3.1</netcdf.version>
         <brandingToken>probavbox</brandingToken>
         <user.language>en</user.language>
     </properties>
@@ -244,7 +244,7 @@
             <!-- TAR archive support  -->
             <dependency>
                 <groupId>edu.ucar</groupId>
-                <artifactId>netcdf</artifactId>
+                <artifactId>netcdfAll</artifactId>
                 <version>${netcdf.version}</version>
             </dependency>
             <dependency>
