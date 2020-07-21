@@ -1,4 +1,4 @@
-PROBA-V Toolbox (probavbox) [![Build Status](https://travis-ci.com/senbox-org/probavbox.svg?branch=master)](https://travis-ci.com/senbox-org/probavbox)
+PROBA-V Toolbox (probavbox) [![Build Status](https://travis-ci.org/senbox-org/probavbox.svg?branch=master)](https://travis-ci.org/senbox-org/probavbox)
 ===========================
 
 A toolbox for PROBA-V satellite. The small satellite for 
