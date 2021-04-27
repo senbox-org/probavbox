@@ -385,6 +385,7 @@
                     <configuration>
                         <moduleType>normal</moduleType>
                         <licenseName>GPL 3</licenseName>
+                        <homePageUrl>http://proba-v.vgt.vito.be</homePageUrl>
                         <licenseFile>${project.basedir}/../LICENSE.html</licenseFile>
                         <cluster>${brandingToken}</cluster>
                         <brandingToken>${brandingToken}</brandingToken>
