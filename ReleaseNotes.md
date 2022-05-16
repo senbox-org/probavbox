@@ -1,10 +1,17 @@
 PROBA-V Toolbox Release Notes
 ================================
 
+Changes in PROBA-V Toolbox 2.3
+------------------------------
+PROBA-V Toolbox version 2.3 has been released for compatibility reasons
+with SNAP 9.
+
+
 Changes in PROBA-V Toolbox 2.2
 ------------------------------
-No new features have been added to the PROBA-V Toolbox in version 2.2. It has 
-been only released for compatibility reasons with SNAP 8. 
+No new features have been added to the PROBA-V Toolbox in version 2.2. It has
+been only released for compatibility reasons with SNAP 8.
+
 
 Changes in PROBA-V Toolbox 2.1
 ------------------------------
